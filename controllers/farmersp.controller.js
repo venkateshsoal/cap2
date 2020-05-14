@@ -34,3 +34,53 @@ exports.create = (req, res) => {
         });
       });
   };
+
+  exports.findAll = (req, res) => {
+
+    //const title = req.query.title;
+    //var condition = title ? { title: { [Op.iLike]: `%${title}%` } } : null;
+
+  Farmersp.findAll()
+    .then(data => {
+      if (data.length > 0) {
+        res.send(data);
+      } else {
+        res.status(404).send({
+          "error": "No record found"
+        })
+
+      }
+    })
+    .catch(err => {
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while retrieving records."
+      });
+    });
+  };
+
+  //ssearch
+  //findByCrop?croptype=wheat
+  exports.findByCrop = (req, res) => {
+    
+    const crop = req.query.croptype;
+    var condition = crop ? { croptype: { [Op.iLike]: `%${crop}%` } } : null;
+
+  Farmersp.findAll({ where: condition })
+    .then(data => {
+      if (data.length > 0) {
+        res.send(data);
+      } else {
+        res.status(404).send({
+          "error": "No record found"
+        })
+
+      }
+    })
+    .catch(err => {
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while retrieving records."
+      });
+    });
+  };

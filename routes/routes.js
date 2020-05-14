@@ -8,4 +8,8 @@
 
     router.post("/farmers", farmers.create);
 
+    router.get("/home", farmers.findAll);
+
+    router.get("/findByCrop", farmers.findByCrop);
+
     module.exports = router;

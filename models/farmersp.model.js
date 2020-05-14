@@ -13,7 +13,7 @@ module.exports = (sequelize, Sequelize) => {
         type: Sequelize.STRING
       },
       images: {
-        type: Sequelize.STRING
+        type: Sequelize.BLOB
       },
       enddate: {
         type: Sequelize.STRING
